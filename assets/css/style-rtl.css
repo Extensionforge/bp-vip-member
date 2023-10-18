@@ -1,0 +1,328 @@
+/**
+ *
+ * Allows admins to specify vip accounts. Adds a badge to vip members.
+ */
+:root {
+  --bp-vip-members-tooltip-color: #fff;
+  --bp-vip-members-tooltip-background-color: rgba(0,0,0,0.75);
+  --bp-vip-members-tooltip-border-radius: 3px;
+  --bp-vip-members-tooltip-padding: 5px 8px;
+  --bp-vip-members-tooltip-padding-x: 12px;
+  --bp-vip-members-tooltip-padding-y: 3px;
+  --bp-vip-members-tooltip-font-family: inherit;
+  --bp-vip-members-tooltip-font-weight: 400;
+  --bp-vip-members-tooltip-font-size: .8rem;
+  --bp-vip-members-tooltip-max-width: 200px;
+  --bp-vip-members-tooltip-box-shadow: none;
+  --bp-vip-members-tooltip-arrow-size: 6px;
+  --bp-vip-members-vip-badge-shape: url("../images/mask-circle.svg");
+  --bp-vip-members-unvip-badge-shape: url("../images/mask-circle.svg");
+}
+
+.bp-vip-badge,
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .member-name-item > a:after,
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .item-title > a:after,
+.bp-vip-member:not(.bp-vip-member-badge-loaded) > .author > a:after,
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .member-name > a:after,
+.bp-unvip-badge,
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .member-name-item > a:after,
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .item-title > a:after,
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) > .author > a:after,
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .member-name > a:after {
+  display: inline-block;
+  position: relative;
+  top: -.05em;
+  margin-right: .2em;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.activity .bp-vip-badge, .activity
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .member-name-item > a:after, .activity
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .item-title > a:after, .activity
+.bp-vip-member:not(.bp-vip-member-badge-loaded) > .author > a:after, .activity
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .member-name > a:after, .activity
+.bp-unvip-badge, .activity
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .member-name-item > a:after, .activity
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .item-title > a:after, .activity
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) > .author > a:after, .activity
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .member-name > a:after {
+  margin-left: .2em;
+}
+
+.widget img:not(.emoji) ~ .bp-vip-badge, .widget img:not(.emoji) ~
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .member-name-item > a:after, .widget img:not(.emoji) ~
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .item-title > a:after, .widget img:not(.emoji) ~
+.bp-vip-member:not(.bp-vip-member-badge-loaded) > .author > a:after, .widget img:not(.emoji) ~
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .member-name > a:after, .widget img:not(.emoji) ~
+.bp-unvip-badge, .widget img:not(.emoji) ~
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .member-name-item > a:after, .widget img:not(.emoji) ~
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .item-title > a:after, .widget img:not(.emoji) ~
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) > .author > a:after, .widget img:not(.emoji) ~
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .member-name > a:after {
+  position: absolute;
+  bottom: -6px;
+  left: -6px;
+  top: auto;
+  margin: 0 !important;
+  display: none;
+}
+
+.widget.widget_bp_core_recently_active_widget img ~ .bp-vip-badge,
+.widget.widget_bp_core_whos_online_widget img ~ .bp-vip-badge, .widget.widget_bp_core_recently_active_widget img ~
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .member-name-item > a:after,
+.widget.widget_bp_core_whos_online_widget img ~
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .member-name-item > a:after, .widget.widget_bp_core_recently_active_widget img ~
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .item-title > a:after,
+.widget.widget_bp_core_whos_online_widget img ~
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .item-title > a:after, .widget.widget_bp_core_recently_active_widget img ~
+.bp-vip-member:not(.bp-vip-member-badge-loaded) > .author > a:after,
+.widget.widget_bp_core_whos_online_widget img ~
+.bp-vip-member:not(.bp-vip-member-badge-loaded) > .author > a:after, .widget.widget_bp_core_recently_active_widget img ~
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .member-name > a:after,
+.widget.widget_bp_core_whos_online_widget img ~
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .member-name > a:after, .widget.widget_bp_core_recently_active_widget img ~
+.bp-unvip-badge,
+.widget.widget_bp_core_whos_online_widget img ~
+.bp-unvip-badge, .widget.widget_bp_core_recently_active_widget img ~
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .member-name-item > a:after,
+.widget.widget_bp_core_whos_online_widget img ~
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .member-name-item > a:after, .widget.widget_bp_core_recently_active_widget img ~
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .item-title > a:after,
+.widget.widget_bp_core_whos_online_widget img ~
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .item-title > a:after, .widget.widget_bp_core_recently_active_widget img ~
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) > .author > a:after,
+.widget.widget_bp_core_whos_online_widget img ~
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) > .author > a:after, .widget.widget_bp_core_recently_active_widget img ~
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .member-name > a:after,
+.widget.widget_bp_core_whos_online_widget img ~
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .member-name > a:after {
+  display: inline-block;
+}
+
+.bp-vip-badge,
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .member-name-item > a:after,
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .item-title > a:after,
+.bp-vip-member:not(.bp-vip-member-badge-loaded) > .author > a:after,
+.bp-vip-member:not(.bp-vip-member-badge-loaded) .member-name > a:after {
+  background: #1DA1F2 url("../images/vip-check.svg") no-repeat center center;
+  -webkit-mask: var(--bp-vip-members-vip-badge-shape);
+          mask: var(--bp-vip-members-vip-badge-shape);
+}
+
+.bp-unvip-badge,
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .member-name-item > a:after,
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .item-title > a:after,
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) > .author > a:after,
+.bp-unvip-member:not(.bp-unvip-member-badge-loaded) .member-name > a:after {
+  background: #1DA1F2 url("../images/unvip-warning.svg") no-repeat center center;
+  -webkit-mask: var(--bp-vip-members-unvip-badge-shape);
+          mask: var(--bp-vip-members-unvip-badge-shape);
+}
+
+#item-header-content .bp-vip-badge,
+#item-header-content .bp-unvip-badge,
+#profile-header .bp-vip-badge,
+#profile-header .bp-unvip-badge {
+  width: 24px;
+  height: 24px;
+  background-size: 12px;
+  margin-right: .3em;
+}
+
+.bp-vip-member .item-title > a,
+.bp-vip-member .member-name > a,
+.bp-vip-member > .author > a,
+.bp-vip-member .member-name-item > a,
+.bp-unvip-member .item-title > a,
+.bp-unvip-member .member-name > a,
+.bp-unvip-member > .author > a,
+.bp-unvip-member .member-name-item > a {
+  display: inline-block;
+}
+
+.bp-vip-member .item-title > a:after,
+.bp-vip-member .member-name > a:after,
+.bp-vip-member > .author > a:after,
+.bp-vip-member .member-name-item > a:after,
+.bp-unvip-member .item-title > a:after,
+.bp-unvip-member .member-name > a:after,
+.bp-unvip-member > .author > a:after,
+.bp-unvip-member .member-name-item > a:after {
+  content: '';
+}
+
+.bp-vip-member .item-title > a ~ span.bp-vip-badge,
+.bp-vip-member .item-title > a ~ span.bp-unvip-badge,
+.bp-vip-member .member-name > a ~ span.bp-vip-badge,
+.bp-vip-member .member-name > a ~ span.bp-unvip-badge,
+.bp-vip-member > .author > a ~ span.bp-vip-badge,
+.bp-vip-member > .author > a ~ span.bp-unvip-badge,
+.bp-vip-member .member-name-item > a ~ span.bp-vip-badge,
+.bp-vip-member .member-name-item > a ~ span.bp-unvip-badge,
+.bp-unvip-member .item-title > a ~ span.bp-vip-badge,
+.bp-unvip-member .item-title > a ~ span.bp-unvip-badge,
+.bp-unvip-member .member-name > a ~ span.bp-vip-badge,
+.bp-unvip-member .member-name > a ~ span.bp-unvip-badge,
+.bp-unvip-member > .author > a ~ span.bp-vip-badge,
+.bp-unvip-member > .author > a ~ span.bp-unvip-badge,
+.bp-unvip-member .member-name-item > a ~ span.bp-vip-badge,
+.bp-unvip-member .member-name-item > a ~ span.bp-unvip-badge {
+  display: none !important;
+}
+
+.bp-vip-badge-tooltip,
+.bp-unvip-badge-tooltip {
+  color: var(--bp-vip-members-tooltip-color);
+  background-color: var(--bp-vip-members-tooltip-background-color);
+  padding: var(--bp-vip-members-tooltip-padding-y) var(--bp-vip-members-tooltip-padding-x);
+  border-radius: var(--bp-vip-members-tooltip-border-radius);
+  font-family: var(--bp-vip-members-tooltip-font-family);
+  font-weight: var(--bp-vip-members-tooltip-font-weight);
+  font-size: var(--bp-vip-members-tooltip-font-size);
+  max-width: var(--bp-vip-members-tooltip-max-width);
+  box-shadow: var(--bp-vip-members-tooltip-box-shadow);
+  border: none;
+  font-style: normal;
+  display: block;
+  transition: .2s ease-in-out;
+  position: absolute;
+  z-index: 1070;
+  margin: 0;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-break: normal;
+  word-spacing: normal;
+  white-space: normal;
+  line-break: auto;
+  word-wrap: break-word;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.bp-vip-badge-tooltip[style*="hidden"],
+.bp-unvip-badge-tooltip[style*="hidden"] {
+  opacity: 0;
+}
+
+.bp-vip-badge-tooltip .bp-vip-badge-tooltip-arrow,
+.bp-vip-badge-tooltip .bp-unvip-badge-tooltip-arrow,
+.bp-unvip-badge-tooltip .bp-vip-badge-tooltip-arrow,
+.bp-unvip-badge-tooltip .bp-unvip-badge-tooltip-arrow {
+  position: absolute;
+  content: '';
+  border-color: transparent;
+  border-style: solid;
+  width: 0;
+  height: 0;
+  right: calc(50% - var(--bp-vip-members-tooltip-arrow-size));
+}
+
+.bp-vip-badge-tooltip[x-placement="top"] .bp-vip-badge-tooltip-arrow,
+.bp-vip-badge-tooltip[x-placement="top"] .bp-unvip-badge-tooltip-arrow, .bp-vip-badge-tooltip[data-popper-placement="top"] .bp-vip-badge-tooltip-arrow,
+.bp-vip-badge-tooltip[data-popper-placement="top"] .bp-unvip-badge-tooltip-arrow,
+.bp-unvip-badge-tooltip[x-placement="top"] .bp-vip-badge-tooltip-arrow,
+.bp-unvip-badge-tooltip[x-placement="top"] .bp-unvip-badge-tooltip-arrow,
+.bp-unvip-badge-tooltip[data-popper-placement="top"] .bp-vip-badge-tooltip-arrow,
+.bp-unvip-badge-tooltip[data-popper-placement="top"] .bp-unvip-badge-tooltip-arrow {
+  top: calc(100% - 1px);
+  border-width: var(--bp-vip-members-tooltip-arrow-size) var(--bp-vip-members-tooltip-arrow-size) 0;
+  border-top-color: var(--bp-vip-members-tooltip-background-color);
+}
+
+.bp-vip-badge-tooltip[x-placement="bottom"] .bp-vip-badge-tooltip-arrow,
+.bp-vip-badge-tooltip[x-placement="bottom"] .bp-unvip-badge-tooltip-arrow, .bp-vip-badge-tooltip[data-popper-placement="bottom"] .bp-vip-badge-tooltip-arrow,
+.bp-vip-badge-tooltip[data-popper-placement="bottom"] .bp-unvip-badge-tooltip-arrow,
+.bp-unvip-badge-tooltip[x-placement="bottom"] .bp-vip-badge-tooltip-arrow,
+.bp-unvip-badge-tooltip[x-placement="bottom"] .bp-unvip-badge-tooltip-arrow,
+.bp-unvip-badge-tooltip[data-popper-placement="bottom"] .bp-vip-badge-tooltip-arrow,
+.bp-unvip-badge-tooltip[data-popper-placement="bottom"] .bp-unvip-badge-tooltip-arrow {
+  bottom: calc(100% - 1px);
+  border-width: 0 var(--bp-vip-members-tooltip-arrow-size) var(--bp-vip-members-tooltip-arrow-size) var(--bp-vip-members-tooltip-arrow-size);
+  border-bottom-color: var(--bp-vip-members-tooltip-background-color);
+}
+
+.wp-list-table .column-bp-vip-member {
+  text-align: center;
+}
+
+.dashicons.bp-vip-member-spin {
+  -webkit-animation: bp-vip-member-spin 1s infinite;
+          animation: bp-vip-member-spin 1s infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+
+@-webkit-keyframes bp-vip-member-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes bp-vip-member-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.bp-vip-member-toggle.bp-vip-by-role, .bp-vip-member-toggle.bp-vip-by-member-type {
+  cursor: not-allowed;
+}
+
+.bp-vip-member-toggle.bp-vip-by-role .bp-vip-badge, .bp-vip-member-toggle.bp-vip-by-member-type .bp-vip-badge {
+  opacity: .5;
+}
+
+.bp-vip-member-toggle:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.bp-vip-member-request-button {
+  background-color: #fff;
+  border-radius: 8px;
+  color: #000;
+  display: inline-block;
+  margin: 0;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.bp-vip-member-request-button.bp-vip-member-verification-pending {
+  opacity: .7;
+  cursor: not-allowed;
+}
+
+.bp-vip-member-request-button .bp-vip-badge {
+  width: 20px !important;
+  height: 20px !important;
+  background-size: inherit !important;
+}
+
+.bp-vip-member-new-requests-notice p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bp-vip-member-new-requests-notice .notice-dismiss {
+  top: 5px;
+}
+
